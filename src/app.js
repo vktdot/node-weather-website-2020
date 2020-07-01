@@ -1,10 +1,11 @@
 const path = require('path')
 const express = require('express')
-const app = express()
 const hbs = require('hbs')
 const geocode = require('./utils/geocode.js')
 const forecast = require('./utils/forecast.js')
 
+const app = express()
+const port = process.env.PORT || 3000
 
 //Define path for express config
 const publicDirectoryPath = path.join(__dirname, '../public')
@@ -36,7 +37,7 @@ app.get('/about', (req, res) => {
 
 app.get('/help', (req, res) => {
     res.render('help', {
-        helpText: 'This is some helpful text',
+        helpText: 'This is some helpful text.',
         title: 'Help',
         name: 'V.M.'
     })
@@ -95,6 +96,6 @@ app.get('*', (req, res) => {
     })
 })
 
-app.listen(3000, () => {
-    console.log('App is running on port 3000')
+app.listen(port, () => {
+    console.log(`App is running on port ${port}`)
 })
